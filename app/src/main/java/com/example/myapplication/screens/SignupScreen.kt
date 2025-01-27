@@ -1,26 +1,37 @@
 package com.example.myapplication.screens
 
+import android.content.Intent
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.* // Use `material3` if you're using Material3
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment // Import for Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.input.ImeAction
-import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.*
+import androidx.compose.ui.text.input.*
 import androidx.compose.ui.unit.*
 import androidx.compose.ui.graphics.*
 import androidx.compose.foundation.*
 import androidx.compose.foundation.shape.*
+import androidx.compose.foundation.text.*
+import androidx.compose.ui.text.style.*
+import androidx.compose.ui.text.*
+import com.example.myapplication.SignupActivity
 
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LoginScreen() {
+fun SignupScreen(onSignInClick: () -> Unit) {
     var email by remember { mutableStateOf(TextFieldValue("")) }
     var username by remember { mutableStateOf(TextFieldValue("")) }
     var password by remember { mutableStateOf(TextFieldValue("")) }
     var confirm_password by remember { mutableStateOf(TextFieldValue("")) }
+
+    //design
+    var shape = RoundedCornerShape(15.dp)
+    var colors = TextFieldDefaults.textFieldColors(
+        disabledTextColor = Color.Transparent,
+        focusedIndicatorColor = Color.Transparent,
+        unfocusedIndicatorColor = Color.Transparent,
+        disabledIndicatorColor = Color.Transparent
+    )
 
     Column(
         modifier = Modifier
@@ -41,7 +52,8 @@ fun LoginScreen() {
             onValueChange = { username = it },
             label = { Text("Username") },
             keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Next),
-            shape = RoundedCornerShape(15.dp),
+            shape = shape,
+            colors = colors
         )
 
         Spacer(modifier = Modifier.height(8.dp))
@@ -51,7 +63,9 @@ fun LoginScreen() {
             value = email,
             onValueChange = { email = it },
             label = { Text("Email") },
-            keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Done)
+            keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Done),
+            shape = shape,
+            colors = colors
         )
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -60,9 +74,11 @@ fun LoginScreen() {
         TextField(
             value = password,
             onValueChange = { password = it },
-            //label = { Text("Password") },
+            label = { Text("Password") },
             visualTransformation = PasswordVisualTransformation(),
-            keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Done)
+            keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Done),
+            shape = shape,
+            colors = colors
         )
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -71,15 +87,31 @@ fun LoginScreen() {
         TextField(
             value = confirm_password,
             onValueChange = { confirm_password= it },
-            //label = { Text("Password") },
+            label = { Text("Confirm Password") },
             visualTransformation = PasswordVisualTransformation(),
-            keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Done)
+            keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Done),
+            shape = shape,
+            colors = colors
         )
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        Button(onClick = { /*logic here later on*/ }) {
+        Button(onClick = { /*logic here later on*/ }){
             Text("Sign Up")
         }
+
+        ClickableText(
+            text = buildAnnotatedString { append("Already have an account? ")
+                pushStringAnnotation(tag = "link", annotation = "http://example.com")
+                withStyle(style = androidx.compose.ui.text.SpanStyle(color = Color.Blue, textDecoration = TextDecoration.LineThrough)) {
+                    append("Sign in")
+                }
+                pop()
+            },
+            onClick = { offset ->
+                //refer to signupActivity functions
+                SignupActivity.goToLoginActivity();
+            }
+        ){}
     }
 }
