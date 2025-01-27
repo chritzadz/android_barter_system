@@ -14,19 +14,20 @@ import androidx.compose.foundation.text.*
 import androidx.compose.ui.text.style.*
 import androidx.compose.ui.text.*
 import com.example.myapplication.SignupActivity
+import com.example.myapplication.ActivityNavigation
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SignupScreen(onSignInClick: () -> Unit) {
+fun SignupScreen(navigate: ActivityNavigation) {
     var email by remember { mutableStateOf(TextFieldValue("")) }
     var username by remember { mutableStateOf(TextFieldValue("")) }
     var password by remember { mutableStateOf(TextFieldValue("")) }
     var confirm_password by remember { mutableStateOf(TextFieldValue("")) }
 
     //design
-    var shape = RoundedCornerShape(15.dp)
-    var colors = TextFieldDefaults.textFieldColors(
+    val shape = RoundedCornerShape(15.dp)
+    val colors = TextFieldDefaults.textFieldColors(
         disabledTextColor = Color.Transparent,
         focusedIndicatorColor = Color.Transparent,
         unfocusedIndicatorColor = Color.Transparent,
@@ -100,18 +101,19 @@ fun SignupScreen(onSignInClick: () -> Unit) {
             Text("Sign Up")
         }
 
-        ClickableText(
-            text = buildAnnotatedString { append("Already have an account? ")
-                pushStringAnnotation(tag = "link", annotation = "http://example.com")
-                withStyle(style = androidx.compose.ui.text.SpanStyle(color = Color.Blue, textDecoration = TextDecoration.LineThrough)) {
-                    append("Sign in")
-                }
-                pop()
-            },
-            onClick = { offset ->
-                //refer to signupActivity functions
-                SignupActivity.goToLoginActivity();
+        val annotatedText = buildAnnotatedString { append("Already have an account? ")
+            pushStringAnnotation(tag = "link", annotation = "http://example.com")
+            withStyle(style = androidx.compose.ui.text.SpanStyle(color = Color.Blue)) {
+                append("Sign in")
             }
-        ){}
+            pop()
+        }
+
+        ClickableText(
+            text = annotatedText,
+            onClick = {
+                navigate.goToLoginActivity()
+            }
+        )
     }
 }

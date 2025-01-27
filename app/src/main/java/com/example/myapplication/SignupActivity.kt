@@ -12,20 +12,20 @@ import com.example.myapplication.LoginActivity
 import com.example.myapplication.ui.theme.MyApplicationTheme
 
 
-class SignupActivity : ComponentActivity() {
+class SignupActivity : ComponentActivity(), ActivityNavigation {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         setContent {
             MyApplicationTheme {
                 Surface(modifier = Modifier.fillMaxSize()) {
-                    SignupScreen()
+                    SignupScreen(navigate = this)
                 }
             }
         }
     }
 
-    fun goToLoginActivity(){
+    override fun goToLoginActivity(){
         val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
     }
