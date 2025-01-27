@@ -109,6 +109,8 @@ fun SignupScreen(navigate: ActivityNavigation) {
             pop()
         }
 
+        Spacer(modifier = Modifier.height(32.dp))
+
         ClickableText(
             text = annotatedText,
             onClick = {
