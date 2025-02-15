@@ -1,5 +1,13 @@
 class CredentialValidator {
     companion object {
+        fun containsNumber(input: String): Boolean {
+            return input.contains("\\d".toRegex())
+        }
+
+        fun containsLetter(input: String): Boolean {
+            return input.contains("[a-zA-Z]".toRegex())
+        }
+
         fun isEmptyEmailAddress(emailAddress: String?): Boolean {
             return emailAddress.isNullOrBlank()
         }
@@ -13,6 +21,14 @@ class CredentialValidator {
 
         fun isEmptyPassword(password: String?): Boolean {
             return password.isNullOrBlank()
+        }
+
+        fun isValidPassword(password: String?): Boolean {
+            if (password.isNullOrEmpty()) return false
+
+            val passwordRegex = "[^a-zA-Z0-9]".toRegex()
+
+            return password.matches(passwordRegex) && containsNumber(password) && containsLetter(password)
         }
     }
 }
