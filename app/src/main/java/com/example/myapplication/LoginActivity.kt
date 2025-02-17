@@ -1,31 +1,36 @@
 package com.example.myapplication
 
+import CredentialValidator
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import com.example.myapplication.screens.LoginScreen
 import com.example.myapplication.ui.theme.MyApplicationTheme
 
 
 class LoginActivity : ComponentActivity() {
+    private val validator: CredentialValidator = CredentialValidator()
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         setContent {
             MyApplicationTheme {
-                Surface(modifier = Modifier.fillMaxSize()) {
-                    LoginScreen()
-                }
+                LoginScreen(onLoginClick = { email, password ->
+                    handleLogin(email, password)
+                })
             }
         }
     }
+
+    fun handleLogin(email: String, password: String){}
+
+
+//    fun moveToDashboardPage(){
+//        val intent = Intent(this, DashboardActivity::class.java)
+//        startActivity(intent)
+//        finish() //pop from activity stack.
+//    }
+
 }
