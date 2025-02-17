@@ -1,3 +1,6 @@
+package com.example.myapplication.viewmodel
+
+import CredentialValidator
 import android.provider.Settings.Global.getString
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
