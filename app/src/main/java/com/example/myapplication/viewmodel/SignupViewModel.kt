@@ -8,6 +8,12 @@ class SignupViewModel : ViewModel() {
     private val _email = MutableStateFlow("")
     val email = _email.asStateFlow()
 
+    private val _firstName = MutableStateFlow("")
+    val firstName = _firstName.asStateFlow()
+
+    private val _lastName = MutableStateFlow("")
+    val lastName = _lastName.asStateFlow()
+
     private val _password = MutableStateFlow("")
     val password = _password.asStateFlow()
 
@@ -32,5 +38,6 @@ class SignupViewModel : ViewModel() {
         else{
             _showError.value = "";
         }
+
     }
 }
