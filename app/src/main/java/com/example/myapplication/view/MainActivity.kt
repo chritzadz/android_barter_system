@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.myapplication.view
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -15,6 +15,6 @@ class MainActivity : ComponentActivity() {
         // redirect to login
         val intent = Intent(this, SignupActivity::class.java)
         startActivity(intent)
-        finish() //pop from activity stack.
+        finish()
     }
 }
