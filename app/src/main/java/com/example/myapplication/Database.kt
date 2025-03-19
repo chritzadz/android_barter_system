@@ -59,4 +59,33 @@ class Database private constructor(context: Context) : SQLiteOpenHelper(context,
         db.insert(TABLE_NAME, null, values)
         db.close()
     }
+
+    fun getUserByEmail(email: String): User?{
+        val db = readableDatabase
+        var user: User? = null
+
+        val cursor = db.query(
+            TABLE_NAME,
+            arrayOf("firstName", "lastName", "email", "password"),
+            "email = ?",
+            arrayOf(email),
+            null,
+            null,
+            null
+        )
+
+        if (cursor.moveToFirst()) {
+            val firstName = cursor.getString(cursor.getColumnIndexOrThrow("firstName"))
+            val lastName = cursor.getString(cursor.getColumnIndexOrThrow("lastName"))
+            val email = cursor.getString(cursor.getColumnIndexOrThrow("email"))
+            val password = cursor.getString(cursor.getColumnIndexOrThrow("password"))
+
+            user = User(firstName, lastName, email, password)
+        }
+
+        cursor.close()
+        db.close()
+
+        return user
+    }
 }

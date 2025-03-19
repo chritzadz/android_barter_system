@@ -178,7 +178,7 @@ fun SignupUI(viewModel: SignupViewModel = viewModel(), activity: Activity? = nul
                 text = AnnotatedString("Log in"),
                 onClick = {
                     activity?.let {
-                        val intent = android.content.Intent(it, com.example.myapplication.view.LoginActivity::class.java)
+                        val intent = Intent(it, com.example.myapplication.view.LoginActivity::class.java)
                         it.startActivity(intent)
                     }
                 },

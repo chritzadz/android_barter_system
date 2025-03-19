@@ -5,6 +5,7 @@ import com.example.myapplication.AppConstant
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import androidx.lifecycle.ViewModel
+import com.example.myapplication.Database
 
 class SignupViewModel() : ViewModel() {
     private val _email = MutableStateFlow("")
@@ -55,8 +56,6 @@ class SignupViewModel() : ViewModel() {
                 email = _email.value,
                 password = _password.value
             )
-
-            //repository.addUser(newUser)
         }
     }
 }
