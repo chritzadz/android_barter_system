@@ -9,7 +9,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -62,7 +61,7 @@ fun SignupUI(viewModel: SignupViewModel = viewModel()) {
     ) {
         TextField(
             value = firstName,
-            onValueChange = { viewModel.onEmailChange(it) },
+            onValueChange = { viewModel.onFirstNameChange(it) },
             label = { Text("First name") },
         )
 
@@ -70,7 +69,7 @@ fun SignupUI(viewModel: SignupViewModel = viewModel()) {
 
         TextField(
             value = lastName,
-            onValueChange = { viewModel.onEmailChange(it) },
+            onValueChange = { viewModel.onLastNameChange(it) },
             label = { Text("Last name") },
         )
 
