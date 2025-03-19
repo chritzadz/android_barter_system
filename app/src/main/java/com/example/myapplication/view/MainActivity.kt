@@ -8,7 +8,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        //set animation logo, if needed
+        //set splash animation logo, if needed
         //...
         //enableEdgeToEdge() //for UI
 
