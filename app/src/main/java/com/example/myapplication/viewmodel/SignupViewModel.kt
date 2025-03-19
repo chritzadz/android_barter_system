@@ -1,12 +1,12 @@
-import androidx.lifecycle.ViewModel
+package com.example.myapplication.viewmodel
+
+import User
 import com.example.myapplication.AppConstant
-import com.example.myapplication.Repository.UserRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.ViewModel
 
-class SignupViewModel(application: Application) : AndroidViewModel(application) {
+class SignupViewModel() : ViewModel() {
     private val _email = MutableStateFlow("")
     val email = _email.asStateFlow()
 
@@ -21,8 +21,6 @@ class SignupViewModel(application: Application) : AndroidViewModel(application) 
 
     private val _showError = MutableStateFlow("")
     val showError = _showError.asStateFlow()
-
-    private val repository: UserRepository = UserRepository(application.applicationContext);
 
     fun onEmailChange(newEmail: String) {
         _email.value = newEmail
@@ -58,7 +56,7 @@ class SignupViewModel(application: Application) : AndroidViewModel(application) 
                 password = _password.value
             )
 
-            repository.addUser(newUser)
+            //repository.addUser(newUser)
         }
     }
 }
