@@ -1,6 +1,5 @@
 package com.example.myapplication.viewmodel
 
-import User
 import com.example.myapplication.AppConstant
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -49,12 +48,7 @@ class SignupViewModel() : ViewModel() {
         else{
             _showError.value = AppConstant.CREDENTIALS_VALID;
 
-            val newUser = User(
-                firstName = _firstName.value,
-                lastName = _lastName.value,
-                email = _email.value,
-                password = _password.value
-            )
+
         }
     }
 }
