@@ -10,7 +10,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -23,11 +22,15 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.myapplication.AppConstant
 
 @Preview
 @Composable
-fun SignupUI(viewModel: SignupViewModel = viewModel(), activity: Activity? = null) {
+fun SignupUI(activity: Activity? = null) {
+
+    val viewModel = viewModel<SignupViewModel>();
+
     val email by viewModel.email.collectAsState()
     val password by viewModel.password.collectAsState()
     val firstName by viewModel.firstName.collectAsState()
